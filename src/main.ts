@@ -98,11 +98,9 @@ async function buildThree() {
   window.addEventListener('resize', handleResize)
 
   // setup gui
-  const pane = new Pane();
-  const params = {
-    rate: 0.5,
-  }
-  pane.addBinding(params, 'rate', { min: 0.0, max: 1.0 })
+  const pane = new Pane()
+  const params = { rate: 0.5 };
+  (pane as any).addBinding(params, 'rate', { min: 0.0, max: 1.0 }) // avoid typescript error
     .on('change', (ev: TpChangeEvent) => {
       videoOverlapPass.uniforms.rate.value = ev.value
     })
